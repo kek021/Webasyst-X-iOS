@@ -76,6 +76,9 @@
 // Site screen
 "siteTitle" = "Site";
 
+// Photos screen
+"photosTitle" = "Photos";
+
 // Install list screen
 "profileTitle" = "User profile";
 "exitAccountButtonTitle" = "Sign Out";

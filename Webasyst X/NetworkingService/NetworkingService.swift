@@ -14,6 +14,7 @@ enum NetworkingService {
     case requestBlogList
     case requestSiteList
     case requestSiteDetail(id: String)
+    case requestPhotosList
 }
 
 extension NetworkingService: TargetType {
@@ -35,6 +36,8 @@ extension NetworkingService: TargetType {
             return "/api.php/site.page.getList"
         case .requestSiteDetail(id: _):
             return "/api.php/site.page.getInfo"
+        case .requestPhotosList:
+            return "/api.php/photos.photo.getList"
         }
     }
     
@@ -47,6 +50,8 @@ extension NetworkingService: TargetType {
         case .requestSiteList:
             return .get
         case .requestSiteDetail(id: _):
+            return .get
+        case .requestPhotosList:
             return .get
         }
     }
@@ -82,6 +87,11 @@ extension NetworkingService: TargetType {
                 "id": id
             ]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .requestPhotosList:
+            let parameters: [String: Any] = [
+                "access_token": "\(changeInstall?.accessToken ?? "")"
+            ]
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
     
@@ -94,6 +104,8 @@ extension NetworkingService: TargetType {
         case .requestSiteList:
             return Data()
         case .requestSiteDetail(id: _):
+            return Data()
+        case .requestPhotosList:
             return Data()
         }
     }
