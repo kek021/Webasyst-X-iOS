@@ -17,6 +17,7 @@ final class MainTabBarCoordinator: NSObject {
     private var blogCoordinator: BlogCoordinator?
     private var siteCoordinator: SiteCoordinator?
     private var shopCoordinator: ShopCoordinator?
+    private var photosCoordinator: PhotosCoordinator?
     private var welcomeCoordinator: WelcomeCoordinator?
     private var source: MainTabBarSource = MainTabBarSource()
     
@@ -78,6 +79,8 @@ extension MainTabBarCoordinator: UITabBarControllerDelegate {
             showSiteTab()
         case .shop:
             showShopTab()
+        case .photos:
+            showPhotosTab()
         }
     }
     
@@ -108,6 +111,11 @@ extension MainTabBarCoordinator {
     private func showSiteTab() {
         siteCoordinator = SiteCoordinator(presenter: source[.site], screens: self.screens)
         siteCoordinator?.start()
+    }
+    
+    private func showPhotosTab() {
+        photosCoordinator = PhotosCoordinator(presenter: source[.photos], screens: self.screens)
+        photosCoordinator?.start()
     }
     
     private func showShopTab() {

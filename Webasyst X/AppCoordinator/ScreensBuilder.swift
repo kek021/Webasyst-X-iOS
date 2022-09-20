@@ -54,6 +54,14 @@ final class ScreensBuilder {
         return viewController
     }
     
+    func createPhotosViewController(coordinator: PhotosCoordinator) -> UIViewController {
+        let viewController = PhotosViewController()
+        let moyaProvider = MoyaProvider<NetworkingService>()
+        let viewModel = PhotosViewModel(moyaProvider: moyaProvider)
+        viewController.viewModel = viewModel
+        viewController.coordinator = coordinator
+        return viewController
+    }
 }
 
 //MARK: Webasyst X modules
